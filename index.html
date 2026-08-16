@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Hub</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/cards.css">
+</head>
+<body>
+
+    <div class="loader-container">
+        <div class="loader">
+            <div class="load-inner load-one"></div>
+            <div class="load-inner load-two"></div>
+            <div class="load-inner load-three"></div>
+            <span class="text">Loading...</span>
+        </div>
+        <div class="loading">
+            <label class="percent">100%</label>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-container">
+        <header>
+            <nav class="navbar">
+                <div class="navbar-left">
+                    <img src="./Iconos/Hamburguesa.svg" alt="menu hamburguesa" class="menu-button">
+                    <a href="./index.html" class="logo"> 
+                        <img src="./Iconos/tituloLogo.svg" alt="Logo" class="logo-img"> 
+                    </a>
+                </div>
+    
+                <div class="search-bar-nav">
+                    <input type="text" placeholder="Buscar..." class="search-input">
+                    <img src="./Iconos/Lupa.svg" alt="Buscar" class="search-lupa">
+                </div>
+    
+                <div class="navbar-right">
+    
+                    <div class="corazon icon"></div>
+                    <div class="campana icon"></div> 
+                    <div class="carrito icon"></div>              
+                    
+                    <img src="./Iconos/Avatar con imagen.svg" alt="icono avatar" class="user-icon"> 
+                    
+                </div>
+            </nav>
+        </header>
+        <div class="sidebar">
+            
+            <img src="./Iconos/icono-cruz.svg" alt="Cerrar" class="icon-cruz-menu">
+            
+            <div class="search-sidebar">
+                <input type="text" placeholder="Buscar..." class="search-input">
+                <img src="./Iconos/Lupa.svg" alt="Buscar" class="search-lupa">
+            </div>
+            <ul>
+                
+                <li><img src="./Iconos/iconos-sidebar/home.svg" alt="Inicio" /><a href="index.html">Inicio</a></li>
+                <li><img src="./Iconos/iconos-sidebar/recientes.svg" alt="Recientes" /><a href="#">Recientes</a></li>
+                <li><img src="./Iconos/iconos-sidebar/nuevos.svg" alt="Nuevos" /><a href="#">Nuevos</a></li>
+                <li><img src="./Iconos/iconos-sidebar/demoda.svg" alt="De moda" /><a href="#">De moda</a></li>
+                <li><img src="./Iconos/iconos-sidebar/actualizados.svg" alt="Actualizados" /><a href="#">Actualizados</a></li>
+                <hr>
+                <li><img src="./Iconos/iconos-sidebar/2jugadores.svg" alt="2 jugadores" /><a href="#">2 jugadores</a></li>
+                <li><img src="./Iconos/iconos-sidebar/accion.svg" alt="Acción" /><a href="#">Acción</a></li>
+                <li><img src="./Iconos/iconos-sidebar/aventuras.svg" alt="Aventuras" /><a href="#">Aventuras</a></li>
+                <li><img src="./Iconos/iconos-sidebar/baloncesto.svg" alt="Baloncesto" /><a href="#">Baloncesto</a></li>
+                <li><img src="./Iconos/iconos-sidebar/belleza.svg" alt="Belleza" /><a href="#">Belleza</a></li>
+                <li><img src="./Iconos/iconos-sidebar/billar.svg" alt="Billar" /><a href="#">Billar</a></li>
+                <li><img src="./Iconos/iconos-sidebar/cartas.svg" alt="Cartas" /><a href="#">Cartas</a></li>
+                <li><img src="./Iconos/iconos-sidebar/casual.svg" alt="Casual" /><a href="#">Casual</a></li>
+                <li><img src="./Iconos/iconos-sidebar/click.svg" alt="Click" /><a href="#">Click</a></li>
+                <li><img src="./Iconos/iconos-sidebar/coches.svg" alt="Coches" /><a href="#">Coches</a></li>
+                <li><img src="./Iconos/iconos-sidebar/conducir.svg" alt="Conducir" /><a href="#">Conducir</a></li>
+                <li><img src="./Iconos/iconos-sidebar/controller.svg" alt="Controller" /><a href="#">Controller</a></li>
+                <li><img src="./Iconos/iconos-sidebar/deportes.svg" alt="Deportes" /><a href="#">Deportes</a></li>
+                <li><img src="./Iconos/iconos-sidebar/terror.svg" alt="Terror" /><a href="#">Terror</a></li>
+                <li><img src="./Iconos/iconos-sidebar/vestir.svg" alt="Vestir" /><a href="#">Vestir</a></li>
+                <li><img src="./Iconos/iconos-sidebar/futbol.svg" alt="Fútbol" /><a href="#">Fútbol</a></li>
+                <li><img src="./Iconos/iconos-sidebar/multijugador.svg" alt="Multijugador" /><a href="#">Multijugador</a></li>
+                <li><img src="./Iconos/iconos-sidebar/puzzle.svg" alt="Puzzle" /><a href="#">Puzzle</a></li>
+                <li><img src="./Iconos/iconos-sidebar/io.svg" alt="Io" /><a href="#">Io</a></li>
+                <li><img src="./Iconos/iconos-sidebar/flash.svg" alt="Flash" /><a href="#">Flash</a></li>
+                <li><img src="./Iconos/iconos-sidebar/minecraft.svg" alt="Minecraft" /><a href="#">Minecraft</a></li>
+                <li><img src="./Iconos/iconos-sidebar/stickman.svg" alt="Stickman" /><a href="#">Stickman</a></li>
+                <li><img src="./Iconos/iconos-sidebar/disparos.svg" alt="Disparos" /><a href="#">Disparos</a></li>
+                <li><img src="./Iconos/iconos-sidebar/defensa.svg" alt="Defensa" /><a href="#">Defensa</a></li>
+                <li><img src="./Iconos/iconos-sidebar/mahjong.svg" alt="Mahjong" /><a href="#">Mahjong</a></li>
+                <li><img src="./Iconos/iconos-sidebar/firstperson.svg" alt="First Person" /><a href="#">First Person</a></li>
+                <li><img src="./Iconos/iconos-sidebar/motos.svg" alt="Motos" /><a href="#">Motos</a></li>
+            </ul>
+        </div>    
+        <div class="user-menu">
+            <img src="./Iconos/Avatar con imagen.svg" alt="Avatar" class="user-avatar">
+            <p>¡Hola, Lolita!</p>
+            <ul>
+                <li><a href="#">Mi perfil</a></li>
+                <li><a href="#">Editar perfil</a></li>
+                <li><a href="#">Configuración de cuenta</a></li>
+                <li><a href="#">Soporte</a></li>
+                <li><a href="login.html">Cerrar sesión</a></li>
+            </ul>
+            <img src="./Iconos/icono-cruz.svg" alt="Cerrar" class="icon-cruz-profile">
+        </div>
+    
+        <!--Slider-->
+        <div class="slider-container">
+            <div class="slides">
+                <div class="slide active">
+                    <picture>
+                        <source media="(max-width: 767px)" srcset="./Images/deadpoolvswolverinemobile.jpg">
+                        <source media="(min-width: 768px)" srcset="./Images/deadpoolvswolverine.jpg">
+                        <img src="" alt="">
+                    </picture>
+                    <div class="container-button">
+                        <button class="slider-button" style="--content: 'Ver mas'" data-url="game.html">
+                            <div class="button-slider-left"></div>
+                              Ver mas
+                            <div class="button-slider-right"></div>
+                        </button>
+                    </div>
+                    
+                </div>
+            
+                <div class="slide">
+                    <picture>
+                        <source media="(max-width: 767px)" srcset="./Images/angrymobile.jpg">
+                        <source media="(min-width: 768px)" srcset="./Images/angrybirds2.png">
+                        <img src="" alt="">
+                    </picture>
+                    <div class="container-button">
+                        <button class="slider-button" style="--content: 'Ver mas'" data-disabled="true">
+                            <div class="button-slider-left"></div>
+                              Ver mas
+                            <div class="button-slider-right"></div>
+                        </button>
+                    </div>
+                </div>
+                <div class="slide">
+                    <picture>
+                        <source media="(max-width: 767px)" srcset="./Images/clashmobile.png">
+                        <source media="(min-width: 768px)" srcset="./Images/clashroyale.png">
+                        <img src="" alt="">
+                    </picture>
+                    <div class="container-button">
+                        <button class="slider-button" style="--content: 'Ver mas'" data-disabled="true">
+                            <div class="button-slider-left"></div>
+                              Ver mas
+                            <div class="button-slider-right"></div>
+                        </button>
+                    </div>
+                </div>
+                <div class="slide">
+                    <picture>
+                        <source media="(max-width: 767px)" srcset="./Images/re4gigante.png">
+                        <source media="(min-width: 768px)" srcset="./Images/re4slider.png">
+                        <img src="" alt="">
+                    </picture>
+                    <div class="container-button">
+                        <button class="slider-button" style="--content: 'Ver mas'" data-disabled="true">
+                            <div class="button-slider-left"></div>
+                              Ver mas
+                            <div class="button-slider-right"></div>
+                        </button>
+                    </div>
+                </div>
+    
+                </div>
+                <div class="dots">
+                    <span  class="dot active"></span>
+                    <span  class="dot"></span>
+                    <span  class="dot"></span>
+                    <span  class="dot"></span>
+                </div>
+            <img src="./Iconos/flecha-sombra-izquierda.svg" id="prev" class="prev" alt="Anterior">
+            <img src="./Iconos/flecha-sombra-derecha.svg" id="next" class="next" alt="Siguiente">
+        </div> 
+    
+    
+    <!--Cards-->
+    
+    <div class="carousel-container">
+        <h2>Para ti</h2>
+        <div class="left-arrow">
+            <img src="Iconos/flecha-izquierda.svg" alt="">
+        </div>
+        <div class="carousel">
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/strangecase.png" alt="">        
+                    <p class="card-title">Strange Case</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>$200</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-cart" id="cartButton">
+                            <span class="button-text">Agregar 
+                                <img class="button-img" id="buttonImg" src="./Iconos/carritoCard.svg" alt="">
+                            </span>
+                        </button>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/numberblockscard.jpg" alt="">        
+                    <p class="card-title">Number Blocks</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free" id="number-blocks" data-url="./NumberBlocks/index.html">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/cardDeadpool.jpg" alt="">        
+                    <p class="card-title">Deadpool vs Wolverine</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free" id="deadpool-button" data-url="game.html">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/nimrods.png" alt="">        
+                    <p class="card-title">Nimrods</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>$99</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-cart" id="cartButton">
+                            <span class="button-text">Agregar 
+                                <img class="button-img" id="buttonImg" src="./Iconos/carritoCard.svg" alt="">
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/krunker.png" alt="">        
+                    <p class="card-title">Krunker</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/10minutescard.png" alt="">        
+                    <p class="card-title">10 Minutes Till Dawn</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>$300</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-cart" id="cartButton">
+                            <span class="button-text">Agregar 
+                                <img class="button-img" id="buttonImg" src="./Iconos/carritoCard.svg" alt="">
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/cocslider.jpg" alt="">        
+                    <p class="card-title">Clash of Clans</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-arrow">
+        <img src="Iconos/flecha-derecha.svg" alt="">
+    </div>
+    </div>
+    
+    
+    <div class="carousel-container">
+        <h2>Acción</h2>
+        <div class="left-arrow">
+            <img src="Iconos/flecha-izquierda.svg" alt="">
+        </div>
+        <div class="carousel">
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/buildandcrashcard.png" alt="">        
+                    <p class="card-title">Build and Crash</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>$20</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-cart" id="cartButton">
+                            <span class="button-text">Agregar 
+                                <img class="button-img" id="buttonImg" src="./Iconos/carritoCard.svg" alt="">
+                            </span>
+                        </button>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/cocslider.jpg" alt="">        
+                    <p class="card-title">Clash of Clans</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/ironcrushercard.png" alt="">        
+                    <p class="card-title">Iron Crusher</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/dino.png" alt="">        
+                    <p class="card-title">Cyber Dino</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>$115</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-cart" id="cartButton">
+                            <span class="button-text">Agregar 
+                                <img class="button-img" id="buttonImg" src="./Iconos/carritoCard.svg" alt="">
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/punchers.png" alt="">        
+                    <p class="card-title">Punchers</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/krunker.png" alt="">        
+                    <p class="card-title">krunker</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/cocslider.jpg" alt="">        
+                    <p class="card-title">Clash of Clans</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-arrow">
+        <img src="Iconos/flecha-derecha.svg" alt="">
+    </div>
+    </div>
+    
+    <div class="carousel-container">
+        <h2>Carreras</h2>
+        <div class="left-arrow">
+            <img src="Iconos/flecha-izquierda.svg" alt="">
+        </div>
+        <div class="carousel">
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/motocard.png" alt="">        
+                    <p class="card-title">Moto Mayhem</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>$150</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-cart" id="cartButton">
+                            <span class="button-text">Agregar 
+                                <img class="button-img" id="buttonImg" src="./Iconos/carritoCard.svg" alt="">
+                            </span>
+                        </button>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/autocard.png" alt="">        
+                    <p class="card-title">Drift Racing</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/offroadislandcard.png" alt="">        
+                    <p class="card-title">Offroad Island</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/superstarcard.png" alt="">        
+                    <p class="card-title">Super Star Car</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>$199</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-cart" id="cartButton">
+                            <span class="button-text">Agregar 
+                                <img class="button-img" id="buttonImg" src="./Iconos/carritoCard.svg" alt="">
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/xtremeCity.png" alt="">        
+                    <p class="card-title">Extreme City Drift</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/mrRacer.png" alt="">        
+                    <p class="card-title">Mr Racer Car Racing</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>$250</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-cart" id="cartButton">
+                            <span class="button-text">Agregar 
+                                <img class="button-img" id="buttonImg" src="./Iconos/carritoCard.svg" alt="">
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/RacingLimits.png" alt="">        
+                    <p class="card-title">Racing Limits</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-arrow">
+        <img src="Iconos/flecha-derecha.svg" alt="">
+    </div>
+    </div>
+    
+    <div class="carousel-container">
+        <h2>Multijugador</h2>
+        <div class="left-arrow">
+            <img src="Iconos/flecha-izquierda.svg" alt="">
+        </div>
+        <div class="carousel">
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/8ballcard.png" alt="">        
+                    <p class="card-title">8 Ball Pool</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/chess.png" alt="">        
+                    <p class="card-title">Master Chess</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>$110</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-cart" id="cartButton">
+                            <span class="button-text">Agregar 
+                                <img class="button-img" id="buttonImg" src="./Iconos/carritoCard.svg" alt="">
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/arenacard.png" alt="">        
+                    <p class="card-title">Battle Arena</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/castel.png" alt="">        
+                    <p class="card-title">Castel War Modern</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>$30</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-cart" id="cartButton">
+                            <span class="button-text">Agregar 
+                                <img class="button-img" id="buttonImg" src="./Iconos/carritoCard.svg" alt="">
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/krunker.png" alt="">        
+                    <p class="card-title">Krunker</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/muscleshift.png" alt="">        
+                    <p class="card-title">Muscle Shift</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/cocslider.jpg" alt="">        
+                    <p class="card-title">Clash of Clans</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-arrow">
+        <img src="Iconos/flecha-derecha.svg" alt="">
+    </div>
+    </div>
+
+    <div class="carousel-container">
+        <h2>Belleza</h2>
+        <div class="left-arrow">
+            <img src="Iconos/flecha-izquierda.svg" alt="">
+        </div>
+        <div class="carousel">
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/newYear,akeup.png" alt="">        
+                    <p class="card-title">New Year Makeup</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/Highschool MeanGirls.png" alt="">        
+                    <p class="card-title">Highschool Mean...</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>$300</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-cart" id="cartButton">
+                            <span class="button-text">Agregar 
+                                <img class="button-img" id="buttonImg" src="./Iconos/carritoCard.svg" alt="">
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/Valentine'sDay.png" alt="">        
+                    <p class="card-title">Valentine's Day...</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/fashionFamous.png" alt="">        
+                    <p class="card-title">fashion Famous</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/funnypets.png" alt="">        
+                    <p class="card-title">Funny Pet Hair</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>$70</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-cart" id="cartButton">
+                            <span class="button-text">Agregar 
+                                <img class="button-img" id="buttonImg" src="./Iconos/carritoCard.svg" alt="">
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/belleza6.png" alt="">        
+                    <p class="card-title">Superstar Collage</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/belleza7.png" alt="">        
+                    <p class="card-title">Office Dress Up</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>$177</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-cart" id="cartButton">
+                            <span class="button-text">Agregar 
+                                <img class="button-img" id="buttonImg" src="./Iconos/carritoCard.svg" alt="">
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-arrow">
+        <img src="Iconos/flecha-derecha.svg" alt="">
+    </div>
+    </div>
+
+    <div class="carousel-container .last-carousel">
+        <h2>Puzzle</h2>
+        <div class="left-arrow">
+            <img src="Iconos/flecha-izquierda.svg" alt="">
+        </div>
+        <div class="carousel">
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/mahjongg.png" alt="">        
+                    <p class="card-title">Mahjongg</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>$25</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-cart" id="cartButton">
+                            <span class="button-text">Agregar 
+                                <img class="button-img" id="buttonImg" src="./Iconos/carritoCard.svg" alt="">
+                            </span>
+                        </button>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/fourcolors.png" alt="">        
+                    <p class="card-title">Four Colors</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/favoritepuzzle.png" alt="">        
+                    <p class="card-title">Favorite puzzles</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/wordwipe.png" alt="">        
+                    <p class="card-title">Word Wipe</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>$95</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-cart" id="cartButton">
+                            <span class="button-text">Agregar 
+                                <img class="button-img" id="buttonImg" src="./Iconos/carritoCard.svg" alt="">
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/onetConnect.png" alt="">        
+                    <p class="card-title">Onet Connect</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>$45</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-cart" id="cartButton">
+                            <span class="button-text">Agregar 
+                                <img class="button-img" id="buttonImg" src="./Iconos/carritoCard.svg" alt="">
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/farmMergeValley.png" alt="">        
+                    <p class="card-title">Farme Merge...</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>Gratis</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-free">
+                            <span class="button-text">Jugar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                    <img src="Images/cardSuffle.png" alt="">        
+                    <p class="card-title">Card Suffle...</p>
+                    <div class="card-info">
+                    <div class="card-price">
+                        <p>$200</p>
+                    </div>
+                    <div class="card-button">
+                        <button class="button-gradient-tracking button-cart" id="cartButton">
+                            <span class="button-text">Agregar 
+                                <img class="button-img" id="buttonImg" src="./Iconos/carritoCard.svg" alt="">
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-arrow">
+        <img src="Iconos/flecha-derecha.svg" alt="">
+    </div>
+    </div>
+    
+    <!--Footer-->
+        <footer>
+            <div class="container-footer">
+                <div class="about">
+                    <h2 class="footer-title">Sobre nosotros</h2>
+                    <ul class="footer-section">
+                        <li>Team</li>
+                        <li>Trabajos</li>
+                        <li>Anuncios</li>
+                    </ul>
+    
+                </div>
+                <div class="help">
+                    <h2 class="footer-title">Ayuda</h2>
+                    <ul class="footer-section">
+                        <li>FAQ</li>
+                        <li>Soporte De la Página</li>
+                        <li>Soporte Para Celulares</li>
+                    </ul>
+                </div>
+                <div class="contact">
+                    <h2 class="footer-title">Contactanos</h2>
+                    <ul class="footer-section">
+                        <li>GameHub@gmail.com</li>
+                        <li>2494-86473294</li>
+                    </ul>
+    
+                </div>
+                <div class="account">
+                    <h2 class="footer-title">Cuenta</h2>
+                    <ul class="footer-section">
+                        <li>Iniciar Sesión</li>
+                        <li>Registrarse</li>
+                        <li>Suscribirse</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h2 class="footer-title">Categorías Populares</h2>
+                    <ul class="footer-section">
+                        <li>Acción</li>
+                        <li>Aventura</li>
+                        <li>Multijugador</li>
+                        <li class="hide-mobile">Estrategia</li>
+                        <li class="hide-mobile">Deporte</li>
+                    </ul>
+                </div>
+                <div class="socialNetworks">
+                    <h2 class="footer-title">Nuestras redes</h2>
+                    <div class="social">
+                        <a href="https://www.instagram.com/"><img src="./Iconos/instagramChiquito.svg" alt="Icono de instagram" class="imgRedes"></a>
+                        <a href="https://x.com/?lang=es"><img src="./Iconos/twitterChiquito.svg" alt="Icono de twitter" class="imgRedes"></a>
+                        <a href="https://www.facebook.com/?locale=es_LA"><img src="./Iconos/facebookChiquito.svg" alt="Icono de facebook" class="imgRedes"></a>
+                        <a href="https://discord.com/"><img src="./Iconos/discordChiquito.svg" alt="Icono de discord" class="imgRedes"></a>
+                             
+                    </div>
+                         
+                </div>
+            </div>
+    
+            <div class="container-copyright">
+                <img src="./Iconos/tituloLogo.svg" alt="logo GameHub" class="logo-footer">
+                <div class="copyright">
+                    
+                    <img src="./Iconos/copyright.svg" alt="copyright" class="logo-copyright">
+                    <p class="copyright-rights">2024 Todos los derechos reservados - GameHub</p>
+                </div>
+            </div>
+    
+        </footer>
+    </div>
+    
+    <script src="./js/buttonGradient.js"></script>
+    <script src="./js/slider.js"></script>
+    <script src="js/header.js"></script> 
+    <script src="js/carousel.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/login.css">
+
+</head>
+<body>
+    <div class="login-container">
+            <div class="img-div">
+                <img class="login-img" src="./Images/hightech1080.png" alt="robot futuristico">
+            </div>
+            
+            <div class="form-div">
+                <form action="" class="form-register form-login">
+                    <h2>Registrarse</h2>
+                    <div class="inputs">
+                    <label for="name">Nombre *</label>
+                    <input type="text" name="name" id="">
+                    <label for="last-name">Apellido *</label>
+                    <input type="text" name="last-name">
+                    <label for="email">Mail *</label>
+                    <input type="email">
+                    <label for="birth-date">Fecha de Nacimiento *</label>
+                    <div class="date-container">
+                        <img src="./Iconos/Calendario.svg" alt="">
+                    <input class="birthdate" type="date" name="birth-date" id="birth-date">
+                    </div>
+                    <label for="password">Contraseña *</label>
+                    <input type="password">
+                    <label for="re-password">Repetir Contraseña *</label>
+                    <input type="password">
+                    </div>
+                    <div class="captcha">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox" id="terms" required>
+                            <label for="terms" class="checkbox-label">
+                                <img class="tick-icon" src="./Iconos/check.svg" alt="">
+                            </label>
+                        </div>
+                            <span>No soy un robot</span>
+                        <div class="logo-captcha">
+                            <img src="./Iconos/logos_recaptcha.svg" alt="">
+                            <img src="./Iconos/Privacy-Terms.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="container-login-button">
+                        <button class="login-button" type="submit" data-url="index.html">Registrarse</button>
+                    </div>
+                    <p>¿Ya tienes cuenta? <a href="login.html">Inicia Sesión</a></p>
+                </form>
+                <div id="successMessage" class="success-hidden">
+                    <h2>¡Registro exitoso!</h2>
+                    <div class="success-animation">
+                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" /><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
+                        </div>
+                  </div>
+            </div>
+       <script src="js/register.js"></script>
+    </div>
+</body>
+</html>

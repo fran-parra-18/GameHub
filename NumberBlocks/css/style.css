@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");/*lato*/
+
+:root{
+
+    /*Colors*/
+    --azul-tipografia:#1B428F;
+    --azul-stroke-video:#1B5F99;
+    --celeste-stroke-card:#2982FF;
+    --azul-drop-shadow:#02187E;
+    --rojo-titulo:#9D2121;
+    --verde-boton:#83C252;
+    --gris-footer:#5E5E5D;
+    --negro-consolas:#242424;
+    --naranja-hamburguesa:#F39E46;
+    /*Fonts*/
+    --lato:'Lato',sans-serif;
+    --interlineado:94.5%;
+
+
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-size: cover;
+    background-position: center center;
+}
