@@ -4,9 +4,6 @@ server:
 spring:
   application:
     name: gamehub-backend
-  # Default local configuration uses an in-memory H2 database so the app runs
-  # with zero setup. Switch to PostgreSQL with SPRING_PROFILES_ACTIVE=postgres
-  # (see the profile below and .env.example).
   datasource:
     url: jdbc:h2:mem:gamehub;DB_CLOSE_DELAY=-1
     driver-class-name: org.h2.Driver
@@ -38,20 +35,7 @@ gemini:
   model: gemini-2.0-flash
 
 gamehub:
+  catalog:
+    sync-on-startup: false
   cors:
     allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:8080,http://127.0.0.1:8080}
-
-# Explicit PostgreSQL profile. Activate it with SPRING_PROFILES_ACTIVE=postgres
-# (or by setting the environment variables in .env.example).
----
-spring:
-  config:
-    activate:
-      on-profile: postgres
-  datasource:
-    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/gamehub}
-    username: ${DATABASE_USERNAME:postgres}
-    password: ${DATABASE_PASSWORD:postgres}
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect

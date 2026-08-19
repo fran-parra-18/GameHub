@@ -4,6 +4,7 @@ import com.gamehub.repository.GameRepository;
 import com.gamehub.service.FreeToGameService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,10 @@ import org.springframework.stereotype.Component;
  * unreachable, the app still starts and /api/games/sync can be called later.
  */
 @Component
+@ConditionalOnProperty(
+        name = "gamehub.catalog.sync-on-startup",
+        havingValue = "true"
+)
 public class DataInitializer implements CommandLineRunner {
 
     private static final Logger log = LoggerFactory.getLogger(DataInitializer.class);
