@@ -15,4 +15,6 @@ public interface GameRepository extends JpaRepository<Game, Long> {
     List<Game> findByGenreIgnoreCase(String genre);
 
     List<Game> findByPlatformContainingIgnoreCase(String platform);
+
+    List<Game> findByGenreIgnoreCaseAndPlatformContainingIgnoreCase(String genre, String platform);
 }

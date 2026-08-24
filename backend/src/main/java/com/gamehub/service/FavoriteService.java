@@ -1,11 +1,12 @@
 package com.gamehub.service;
 
-import com.gamehub.dto.FavoriteDTO;
+import com.gamehub.dto.GameDTO;
 import com.gamehub.entity.Favorite;
 import com.gamehub.entity.Game;
 import com.gamehub.entity.User;
 import com.gamehub.repository.FavoriteRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,13 +28,15 @@ public class FavoriteService {
         }
     }
 
+    @Transactional
     public void removeFavorite(Long gameId, User user) {
+        gameService.getGame(gameId);
         favoriteRepository.deleteByUserIdAndGameId(user.getId(), gameId);
     }
 
-    public List<FavoriteDTO> getFavorites(User user) {
+    public List<GameDTO> getFavorites(User user) {
         return favoriteRepository.findByUserIdOrderByCreatedAtDesc(user.getId())
-                .stream().map(FavoriteDTO::from).toList();
+                .stream().map(favorite -> GameDTO.from(favorite.getGame())).toList();
     }
 
     public boolean isFavorite(Long gameId, User user) {

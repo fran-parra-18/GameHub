@@ -18,11 +18,17 @@ public class GameService {
     }
 
     public List<Game> getGames(String category, String platform) {
-        if (StringUtils.hasText(category)) {
-            return gameRepository.findByGenreIgnoreCase(category);
+        boolean hasCategory = StringUtils.hasText(category);
+        boolean hasPlatform = StringUtils.hasText(platform);
+        if (hasCategory && hasPlatform) {
+            return gameRepository.findByGenreIgnoreCaseAndPlatformContainingIgnoreCase(
+                    category.trim(), platform.trim());
         }
-        if (StringUtils.hasText(platform)) {
-            return gameRepository.findByPlatformContainingIgnoreCase(platform);
+        if (hasCategory) {
+            return gameRepository.findByGenreIgnoreCase(category.trim());
+        }
+        if (hasPlatform) {
+            return gameRepository.findByPlatformContainingIgnoreCase(platform.trim());
         }
         return gameRepository.findAll();
     }

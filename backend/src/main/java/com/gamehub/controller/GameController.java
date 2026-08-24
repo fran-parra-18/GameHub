@@ -1,7 +1,7 @@
 package com.gamehub.controller;
 
 import com.gamehub.dto.GameDTO;
-import com.gamehub.entity.Game;
+import com.gamehub.dto.GameSyncDTO;
 import com.gamehub.service.FreeToGameService;
 import com.gamehub.service.GameService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/games")
@@ -39,8 +38,7 @@ public class GameController {
 
     /** Triggers synchronization from the FreeToGame API into the database. */
     @PostMapping("/sync")
-    public Map<String, Object> sync() {
-        List<Game> games = freeToGameService.syncGames();
-        return Map.of("synced", games.size());
+    public GameSyncDTO sync() {
+        return freeToGameService.syncGames();
     }
 }

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/login.css">
 
 </head>
 <body>
@@ -18,22 +17,16 @@
                 <form action="" class="form-register form-login">
                     <h2>Registrarse</h2>
                     <div class="inputs">
-                    <label for="name">Nombre *</label>
-                    <input type="text" name="name" id="">
-                    <label for="last-name">Apellido *</label>
-                    <input type="text" name="last-name">
+                    <label for="registerUsername">Nombre de usuario *</label>
+                    <input type="text" name="username" id="registerUsername" required maxlength="50" autocomplete="username">
                     <label for="email">Mail *</label>
-                    <input type="email">
-                    <label for="birth-date">Fecha de Nacimiento *</label>
-                    <div class="date-container">
-                        <img src="./Iconos/Calendario.svg" alt="">
-                    <input class="birthdate" type="date" name="birth-date" id="birth-date">
+                    <input type="email" id="registerEmail" required maxlength="120" autocomplete="email">
+                    <label for="registerPassword">Contraseña *</label>
+                    <input type="password" id="registerPassword" required minlength="8" autocomplete="new-password">
+                    <label for="registerPasswordRepeat">Repetir Contraseña *</label>
+                    <input type="password" id="registerPasswordRepeat" required minlength="8" autocomplete="new-password">
                     </div>
-                    <label for="password">Contraseña *</label>
-                    <input type="password">
-                    <label for="re-password">Repetir Contraseña *</label>
-                    <input type="password">
-                    </div>
+                    <p class="form-error" id="formError" role="alert"></p>
                     <div class="captcha">
                         <div class="checkbox-container">
                             <input type="checkbox" class="checkbox" id="terms" required>
@@ -59,6 +52,7 @@
                         </div>
                   </div>
             </div>
+       <script src="js/api.js"></script>
        <script src="js/register.js"></script>
     </div>
 </body>

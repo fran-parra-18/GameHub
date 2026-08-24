@@ -22,7 +22,8 @@ public class CommentService {
     }
 
     public List<CommentDTO> getComments(Long gameId) {
-        return commentRepository.findByGameIdOrderByCreatedAtDesc(gameId)
+        gameService.getGame(gameId);
+        return commentRepository.findByGameIdOrderByCreatedAtDescIdDesc(gameId)
                 .stream().map(CommentDTO::from).toList();
     }
 

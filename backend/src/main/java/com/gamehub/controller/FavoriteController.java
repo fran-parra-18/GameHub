@@ -1,6 +1,6 @@
 package com.gamehub.controller;
 
-import com.gamehub.dto.FavoriteDTO;
+import com.gamehub.dto.GameDTO;
 import com.gamehub.security.CurrentUser;
 import com.gamehub.service.FavoriteService;
 import org.springframework.http.HttpStatus;
@@ -38,7 +38,7 @@ public class FavoriteController {
     }
 
     @GetMapping("/api/users/me/favorites")
-    public List<FavoriteDTO> myFavorites() {
+    public List<GameDTO> myFavorites() {
         return favoriteService.getFavorites(CurrentUser.require());
     }
 }

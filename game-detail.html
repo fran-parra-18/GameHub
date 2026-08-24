@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del juego · GameHub</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header><nav class="navbar">
+        <div class="navbar-left"><img src="./Iconos/Hamburguesa.svg" alt="Abrir menú" class="menu-button"><a href="index.html" class="logo"><img src="./Iconos/tituloLogo.svg" alt="GameHub" class="logo-img"></a></div>
+        <form class="search-bar-nav ai-navbar-search" id="aiNavbarForm"><input type="search" maxlength="500" required placeholder="¿Qué tenés ganas de jugar?" class="search-input" id="aiNavbarQuery" autocomplete="off"><button type="submit" class="search-icon-button" aria-label="Buscar con AI"><img src="./Iconos/Lupa.svg" alt=""></button><div class="ai-search-dropdown" id="aiSearchDropdown" hidden aria-live="polite"></div></form>
+        <div class="navbar-right"><a href="favorites.html" class="corazon icon" aria-label="Mis favoritos"></a><div class="campana icon"></div><div class="carrito icon"></div><img src="./Iconos/Avatar con imagen.svg" alt="Perfil" class="user-icon"></div>
+    </nav></header>
+    <aside class="sidebar"><img src="./Iconos/icono-cruz.svg" alt="Cerrar" class="icon-cruz-menu"><ul><li><img src="./Iconos/iconos-sidebar/home.svg" alt=""><a href="index.html">Inicio</a></li><li><img src="./Iconos/iconos-sidebar/controller.svg" alt=""><a href="game.html">GameHub Original</a></li><li><img src="./Iconos/Corazon.svg" alt=""><a href="favorites.html">Favoritos</a></li></ul></aside>
+    <div class="user-menu"><img src="./Iconos/Avatar con imagen.svg" alt="Avatar" class="user-avatar"><p id="profileGreeting">¡Hola!</p><ul><li><a href="#">Mi perfil</a></li><li><a href="#">Configuración de cuenta</a></li><li><a href="#">Soporte</a></li><li><a href="login.html" id="logoutLink">Cerrar sesión</a></li></ul><img src="./Iconos/icono-cruz.svg" alt="Cerrar" class="icon-cruz-profile"></div>
+
+    <main class="game-detail-main">
+        <p id="detailState" class="api-state">Cargando juego...</p>
+        <article id="gameDetail" class="game-detail-hero" hidden>
+            <img id="detailImage" class="game-detail-image" alt="">
+            <div class="game-detail-content"><p class="game-detail-kicker">FreeToGame · GameHub</p><h1 id="detailTitle"></h1><p id="detailMeta" class="game-detail-meta"></p><dl class="game-detail-facts"><div><dt>Desarrollador</dt><dd id="detailDeveloper"></dd></div><div><dt>Publisher</dt><dd id="detailPublisher"></dd></div></dl><p id="detailDescription" class="game-detail-description"></p><div class="game-detail-actions"><a id="detailPlay" class="button-gradient-tracking detail-play" target="_blank" rel="noopener">Jugar</a><button id="detailFavorite" class="detail-favorite" type="button">♡ Agregar a favoritos</button></div><p id="favoriteState" class="api-state"></p></div>
+        </article>
+
+        <section class="container-comments detail-comments" id="detailComments" hidden><div class="container-splitter-comment"><p class="title-splitter-comment" id="commentCount">Comentarios</p></div></section>
+        <section class="comment-box detail-comment-box" id="detailCommentBox" hidden>
+            <form id="commentForm" class="api-comment-form"><input id="commentContent" maxlength="2000" required placeholder="Dejanos tu opinión sobre este juego..."><button class="btn-input-comment" type="submit">Comentar</button></form>
+            <p id="commentState" class="api-state" aria-live="polite"></p><div id="commentsList"></div>
+        </section>
+    </main>
+    <script src="js/api.js"></script><script src="js/header.js"></script><script src="js/site.js?v=2"></script><script src="js/game-detail.js"></script>
+</body>
+</html>

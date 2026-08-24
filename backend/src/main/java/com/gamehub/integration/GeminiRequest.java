@@ -11,10 +11,26 @@ public record GeminiRequest(List<Content> contents, GenerationConfig generationC
     public record Part(String text) {
     }
 
-    public record GenerationConfig(String responseMimeType) {
+    public record GenerationConfig(String responseMimeType, Map<String, Object> responseSchema) {
 
         public static GenerationConfig json() {
-            return new GenerationConfig("application/json");
+            Map<String, Object> itemSchema = Map.of(
+                    "type", "OBJECT",
+                    "properties", Map.of(
+                            "gameId", Map.of("type", "INTEGER"),
+                            "reason", Map.of("type", "STRING")
+                    ),
+                    "required", List.of("gameId", "reason")
+            );
+            return new GenerationConfig("application/json", Map.of(
+                    "type", "OBJECT",
+                    "properties", Map.of("recommendations", Map.of(
+                            "type", "ARRAY",
+                            "items", itemSchema,
+                            "maxItems", 5
+                    )),
+                    "required", List.of("recommendations")
+            ));
         }
     }
 

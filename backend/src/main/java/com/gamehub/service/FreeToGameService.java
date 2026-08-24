@@ -1,17 +1,22 @@
 package com.gamehub.service;
 
 import com.gamehub.entity.Game;
-import com.gamehub.exception.ExternalServiceException;
+import com.gamehub.dto.GameSyncDTO;
+import com.gamehub.integration.FreeToGameClient;
 import com.gamehub.integration.FreeToGameItem;
 import com.gamehub.repository.GameRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClient;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Consumes the FreeToGame API and upserts games into PostgreSQL/H2.
@@ -21,73 +26,66 @@ import java.util.Optional;
 public class FreeToGameService {
 
     private static final Logger log = LoggerFactory.getLogger(FreeToGameService.class);
-    private static final String API_URL = "https://www.freetogame.com/api/games";
-
-    private final RestClient restClient;
+    private final FreeToGameClient freeToGameClient;
     private final GameRepository gameRepository;
 
-    public FreeToGameService(RestClient.Builder restClientBuilder, GameRepository gameRepository) {
-        this.restClient = restClientBuilder.build();
+    public FreeToGameService(FreeToGameClient freeToGameClient, GameRepository gameRepository) {
+        this.freeToGameClient = freeToGameClient;
         this.gameRepository = gameRepository;
     }
 
-    /** Fetches games from FreeToGame and upserts them, avoiding duplicates via externalId. */
-    public List<Game> syncGames() {
-        List<FreeToGameItem> items = fetch();
-        List<Game> synced = new ArrayList<>();
+    @Transactional
+    public GameSyncDTO syncGames() {
+        List<FreeToGameItem> items = freeToGameClient.fetchGames();
+        Map<Integer, Game> existingByExternalId = new HashMap<>();
+        gameRepository.findAll().forEach(game -> existingByExternalId.put(game.getExternalId(), game));
+
+        List<Game> gamesToSave = new ArrayList<>();
+        Set<Integer> processedIds = new HashSet<>();
         int created = 0;
         int updated = 0;
+        int skipped = 0;
 
         for (FreeToGameItem item : items) {
-            if (item.id() == null) {
+            if (!isValid(item) || !processedIds.add(item.id())) {
+                skipped++;
                 continue;
             }
-            Optional<Game> existing = gameRepository.findByExternalId(item.id());
-            Game game;
-            if (existing.isPresent()) {
-                game = existing.get();
-                apply(item, game);
-                updated++;
-            } else {
+
+            Game game = existingByExternalId.get(item.id());
+            if (game == null) {
                 game = new Game();
                 game.setExternalId(item.id());
-                apply(item, game);
+                existingByExternalId.put(item.id(), game);
                 created++;
+            } else {
+                updated++;
             }
-            synced.add(gameRepository.save(game));
+            apply(item, game);
+            gamesToSave.add(game);
         }
 
-        log.info("FreeToGame sync completed: {} created, {} updated", created, updated);
-        return synced;
+        gameRepository.saveAll(gamesToSave);
+        log.info("FreeToGame sync completed: {} created, {} updated, {} skipped", created, updated, skipped);
+        return new GameSyncDTO(items.size(), created, updated, skipped);
     }
 
-    private List<FreeToGameItem> fetch() {
-        try {
-            List<FreeToGameItem> items = restClient.get()
-                    .uri(API_URL)
-                    .retrieve()
-                    .body(new org.springframework.core.ParameterizedTypeReference<>() {
-                    });
-            if (items == null) {
-                throw new ExternalServiceException("FreeToGame returned an empty response");
-            }
-            return items;
-        } catch (ExternalServiceException e) {
-            throw e;
-        } catch (Exception e) {
-            log.error("Failed to fetch games from FreeToGame", e);
-            throw new ExternalServiceException("Could not reach FreeToGame API. Please try again later.");
-        }
+    private boolean isValid(FreeToGameItem item) {
+        return item != null && item.id() != null && item.id() > 0 && StringUtils.hasText(item.title());
     }
 
     private void apply(FreeToGameItem item, Game game) {
-        game.setTitle(item.title());
-        game.setDescription(item.short_description());
-        game.setGenre(item.genre());
-        game.setPlatform(item.platform());
-        game.setDeveloper(item.developer());
-        game.setPublisher(item.publisher());
-        game.setThumbnailUrl(item.thumbnail());
-        game.setGameUrl(item.game_url());
+        game.setTitle(item.title().trim());
+        game.setDescription(normalize(item.short_description()));
+        game.setGenre(normalize(item.genre()));
+        game.setPlatform(normalize(item.platform()));
+        game.setDeveloper(normalize(item.developer()));
+        game.setPublisher(normalize(item.publisher()));
+        game.setThumbnailUrl(normalize(item.thumbnail()));
+        game.setGameUrl(normalize(item.game_url()));
+    }
+
+    private String normalize(String value) {
+        return StringUtils.hasText(value) ? value.trim() : null;
     }
 }

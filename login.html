@@ -16,19 +16,21 @@
             <div class="form-div">
                 <form action="" class="form-login">
                     <h2>Iniciar Sesión</h2>
-                    <input class="input-email" type="email" placeholder="Correo Electronico">
-                    <input class="input-pass" type="password" placeholder="Contraseña">
+                    <input class="input-email" id="loginIdentifier" type="text" placeholder="Correo electrónico o usuario" required autocomplete="username">
+                    <input class="input-pass" id="loginPassword" type="password" placeholder="Contraseña" required autocomplete="current-password">
+                    <p class="form-error" id="formError" role="alert"></p>
                     <div class="container-login-button">
                         <button class="login-button" data-url="index.html">
                             <span>Iniciar Sesión</span>
                         </button>
                     </div>                    
                     <hr>
-                    <button class="google-btn external-btn" type="submit" data-url="index.html"><img src="./Iconos/devicon_google.svg" alt="">Continuar con Google</button>
-                    <button class="facebook-btn external-btn" type="submit" data-url="index.html"><img src="./Iconos/facebookChiquito.svg" alt="">Continuar con Facebook</button>
+                    <button class="google-btn external-btn" type="button" disabled title="Disponible próximamente"><img src="./Iconos/devicon_google.svg" alt="">Continuar con Google</button>
+                    <button class="facebook-btn external-btn" type="button" disabled title="Disponible próximamente"><img src="./Iconos/facebookChiquito.svg" alt="">Continuar con Facebook</button>
                     <p>¿No tienes cuenta? <a href="register.html">Registrate</a></p>
                 </form>
             </div>
+            <script src="js/api.js"></script>
             <script src="js/login.js"></script>
     </div>
 </body>

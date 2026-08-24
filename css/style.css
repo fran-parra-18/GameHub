@@ -2409,3 +2409,50 @@ footer{
     letter-spacing: 1px;
     line-height: 23px;
   }
+
+/* Backend integration: extends the existing GameHub card language. */
+.form-error, .api-error { color: var(--error); }
+.form-error { min-height: 1.4em; text-align: center; }
+.api-state { margin: 8px 0 14px; color: #f4f4f4; }
+.carousel-container > #catalogState { position: absolute; top: 4.35rem; left: 32%; margin: 0; color: #aaa; font-size: .85rem; }
+.api-game-meta { min-height: 38px; padding: 0 10px; font-size: .82rem; color: #bbb; }
+.api-card-actions { display: flex; gap: 6px; align-items: center; padding: 8px; }
+.api-detail-link, .api-heart, .remove-favorite { border: 0; border-radius: 7px; padding: 8px; text-decoration: none; color: white; cursor: pointer; font-size: .78rem; }
+.api-detail-link { background: var(--primary); }
+.api-heart { margin-left: auto; background: transparent; font-size: 1.7rem; line-height: 1; }
+.api-heart.active { color: #e53c63; }
+.api-card-detail, .api-game-card-link { color: inherit; text-decoration: none; }
+.search-icon-button { position: absolute; right: 1.875rem; border: 0; background: transparent; cursor: pointer; }
+.search-icon-button img { display: block; }
+.ai-navbar-search { z-index: 30; }
+.ai-search-dropdown { position: absolute; top: 2.55rem; left: .9375rem; right: .9375rem; max-height: 28rem; overflow-y: auto; padding: .5rem; border: 1px solid var(--secondary-light); border-radius: .5rem; background: var(--secondary-dark); box-shadow: 0 12px 30px rgba(0,0,0,.45); }
+.ai-dropdown-result { display: flex; gap: .75rem; padding: .65rem; border-radius: .4rem; color: var(--white); text-decoration: none; }
+.ai-dropdown-result:hover { background: var(--secondary-light); }
+.ai-dropdown-result img { width: 4.5rem; height: 3rem; object-fit: cover; border-radius: .35rem; }
+.ai-dropdown-result span { display: flex; flex: 1; min-width: 0; flex-direction: column; }
+.ai-dropdown-result small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #bbb; }
+.ai-result-reason { margin-top: .15rem; color: #ddd !important; }
+.ai-dropdown-state { padding: .8rem; color: var(--white); }
+.game-detail-main, .favorites-main { width: min(74rem, 92%); margin: 0 auto 3rem; padding-top: 7rem; }
+.game-detail-hero { display: grid; grid-template-columns: minmax(18rem, 42%) 1fr; gap: 2rem; padding: 2rem; border-radius: 1rem; background: var(--secondary); }
+.game-detail-image { width: 100%; min-height: 22rem; max-height: 31rem; object-fit: cover; border-radius: .8rem; }
+.game-detail-content h1, .favorites-main h1 { color: var(--white); font-family: var(--title); }
+.game-detail-kicker { color: var(--primary-light); }
+.game-detail-meta, .game-detail-description, .game-detail-facts { color: #ddd; }
+.game-detail-facts { display: flex; gap: 2rem; margin: 1.5rem 0; }
+.game-detail-facts div { flex: 1; }
+.game-detail-facts dt { color: #aaa; font-size: .8rem; }
+.game-detail-facts dd { margin: .2rem 0 0; }
+.game-detail-description { line-height: 1.6; }
+.game-detail-actions { display: flex; gap: .8rem; margin-top: 1.5rem; }
+.detail-play, .detail-favorite, .remove-favorite { padding: .8rem 1.2rem; border: 0; border-radius: .5rem; color: white; text-decoration: none; cursor: pointer; }
+.detail-play { background: var(--primary); }
+.detail-favorite, .remove-favorite { background: var(--secondary-light); }
+.detail-favorite.active { color: #ff6688; }
+.detail-comments { margin-top: 2.5rem; padding-bottom: 1rem; }
+.detail-comment-box { padding: 1.5rem; }
+.api-comment-form { width: min(60rem, 100%); display: flex; gap: .75rem; }
+.api-comment-form input { flex: 1; min-height: 3rem; padding: .8rem; border: 0; border-radius: .5rem; }
+.favorites-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 1rem; }
+.favorites-grid .card { width: 100%; }
+@media (max-width: 700px) { .carousel-container > #catalogState { left: 45%; } .game-detail-hero { grid-template-columns: 1fr; padding: 1rem; } .game-detail-image { min-height: 15rem; } .game-detail-actions, .api-comment-form { flex-direction: column; } .ai-search-dropdown { position: fixed; top: 4.5rem; left: 1rem; right: 1rem; } }

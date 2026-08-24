@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 // animación de carga de página
 var percent = document.querySelector('.percent');
 var progress = document.querySelector('.progress');
+var text = document.querySelector('.text');
 var count = 4;
 var per = 16;
 var loading = setInterval(animate, 43);
@@ -36,11 +37,16 @@ setTimeout(function() {
 // Función para inicializar el carrusel
 function initializeCarousel() {
     const carouselContainers = document.querySelectorAll('.carousel-container');
-    const cardWidth = document.querySelector('.card').offsetWidth + 15; // Ancho de la card + margen
+    const firstCard = document.querySelector('.card');
+    if (!firstCard) return;
+    const cardWidth = firstCard.offsetWidth + 15; // Ancho de la card + margen
 
     carouselContainers.forEach(container => {
         const carousel = container.querySelector('.carousel');
-        container.querySelector('.right-arrow').addEventListener('click', () => {
+        const rightArrow = container.querySelector('.right-arrow');
+        const leftArrow = container.querySelector('.left-arrow');
+        if (!carousel || !rightArrow || !leftArrow) return;
+        rightArrow.addEventListener('click', () => {
             const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
 
             if (carousel.scrollLeft >= maxScrollLeft) {
@@ -52,7 +58,7 @@ function initializeCarousel() {
             }
         });
 
-        container.querySelector('.left-arrow').addEventListener('click', () => {
+        leftArrow.addEventListener('click', () => {
             if (carousel.scrollLeft <= 0) {
                 addSkew();
                 carousel.scrollLeft = carousel.scrollWidth - carousel.clientWidth;

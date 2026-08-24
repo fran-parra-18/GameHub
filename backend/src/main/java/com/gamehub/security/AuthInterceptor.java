@@ -6,6 +6,7 @@ import com.gamehub.repository.UserRepository;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -24,19 +25,29 @@ public class AuthInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        String header = request.getHeader("Authorization");
-        if (header != null && header.startsWith(BEARER_PREFIX)) {
-            String token = header.substring(BEARER_PREFIX.length()).trim();
-            Long userId;
-            try {
-                userId = jwtUtil.getUserId(token);
-            } catch (JwtException | IllegalArgumentException e) {
-                throw new UnauthorizedException("Invalid or expired token");
-            }
-            User user = userRepository.findById(userId)
-                    .orElseThrow(() -> new UnauthorizedException("User no longer exists"));
-            CurrentUser.set(user);
+        CurrentUser.clear();
+        if (HttpMethod.OPTIONS.matches(request.getMethod())) {
+            return true;
         }
+        if (HttpMethod.GET.matches(request.getMethod()) && request.getRequestURI().matches("/api/games/[^/]+/comments")) {
+            return true;
+        }
+
+        String header = request.getHeader("Authorization");
+        if (header == null || !header.startsWith(BEARER_PREFIX)) {
+            throw new UnauthorizedException("Authentication required");
+        }
+
+        String token = header.substring(BEARER_PREFIX.length()).trim();
+        Long userId;
+        try {
+            userId = jwtUtil.getUserId(token);
+        } catch (JwtException | IllegalArgumentException e) {
+            throw new UnauthorizedException("Invalid or expired token");
+        }
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UnauthorizedException("Invalid or expired token"));
+        CurrentUser.set(user);
         return true;
     }
 

@@ -50,7 +50,7 @@ class PersistenceModelTests {
 
         assertThat(user.getCreatedAt()).isNotNull();
         assertThat(comment.getCreatedAt()).isNotNull();
-        assertThat(commentRepository.findByGameIdOrderByCreatedAtDesc(game.getId()))
+        assertThat(commentRepository.findByGameIdOrderByCreatedAtDescIdDesc(game.getId()))
                 .extracting(Comment::getContent)
                 .containsExactly("Great game");
         assertThat(favoriteRepository.existsByUserIdAndGameId(user.getId(), game.getId())).isTrue();

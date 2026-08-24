@@ -9,7 +9,7 @@ import java.util.List;
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     @EntityGraph(attributePaths = {"user"})
-    List<Comment> findByGameIdOrderByCreatedAtDesc(Long gameId);
+    List<Comment> findByGameIdOrderByCreatedAtDescIdDesc(Long gameId);
 
     long countByGameId(Long gameId);
 }

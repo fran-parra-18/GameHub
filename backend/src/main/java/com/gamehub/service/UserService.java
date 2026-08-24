@@ -6,7 +6,6 @@ import com.gamehub.dto.RegisterRequest;
 import com.gamehub.dto.UserDTO;
 import com.gamehub.entity.User;
 import com.gamehub.exception.ConflictException;
-import com.gamehub.exception.NotFoundException;
 import com.gamehub.exception.UnauthorizedException;
 import com.gamehub.repository.UserRepository;
 import com.gamehub.security.JwtUtil;
@@ -29,16 +28,19 @@ public class UserService {
     }
 
     public AuthResponse register(RegisterRequest request) {
-        if (userRepository.existsByUsername(request.username())) {
+        String username = request.username().trim();
+        String email = request.email().trim().toLowerCase();
+
+        if (userRepository.existsByUsernameIgnoreCase(username)) {
             throw new ConflictException("Username is already taken");
         }
-        if (userRepository.existsByEmail(request.email())) {
+        if (userRepository.existsByEmailIgnoreCase(email)) {
             throw new ConflictException("Email is already registered");
         }
 
         User user = new User();
-        user.setUsername(request.username().trim());
-        user.setEmail(request.email().trim().toLowerCase());
+        user.setUsername(username);
+        user.setEmail(email);
         user.setPasswordHash(passwordEncoder.encode(request.password()));
         user = userRepository.save(user);
 
@@ -57,7 +59,8 @@ public class UserService {
     }
 
     private Optional<User> findByEmailOrUsername(String value) {
-        return userRepository.findByEmail(value.trim().toLowerCase())
-                .or(() -> userRepository.findByUsername(value.trim()));
+        String login = value.trim();
+        return userRepository.findByEmailIgnoreCase(login)
+                .or(() -> userRepository.findByUsernameIgnoreCase(login));
     }
 }
