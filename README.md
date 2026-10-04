@@ -1,82 +1,112 @@
-# GameHub
+# 🎮 GameHub
 
-GameHub es una aplicación web full stack para descubrir juegos gratuitos, guardar favoritos, publicar comentarios y obtener recomendaciones mediante inteligencia artificial. El catálogo externo se obtiene desde FreeToGame y se presenta en carruseles organizados por género. Además, el proyecto incluye **Connect Four** como juego local original.
+Full-stack gaming platform that combines a responsive game catalog, user authentication, persistent favorites and comments, external API integration, and AI-powered game recommendations.
 
-## Funcionalidades
+The project was originally developed as a frontend gaming website and later expanded into a complete full-stack application with a Java Spring Boot backend.
 
-- Catálogo de juegos gratuitos sincronizado con FreeToGame (automático al iniciar si el catálogo está vacío).
-- Carruseles dinámicos: uno por cada género real del catálogo, más "Otros géneros" para los menos frecuentes; el menú lateral y su buscador se arman con esos géneros.
-- Filtros de catálogo por categoría y plataforma.
-- Registro e inicio de sesión con JWT.
-- Contraseñas almacenadas mediante BCrypt.
-- Perfil del usuario autenticado.
-- Favoritos persistentes por usuario.
-- Comentarios persistentes asociados al usuario autenticado y al juego.
-- Buscador AI Game Finder integrado con Gemini.
-- Connect Four como juego local de GameHub.
-- Frontend responsive realizado con HTML, CSS y JavaScript sin frameworks.
-- H2 en archivo para desarrollo local (los datos persisten) y soporte para PostgreSQL mediante un perfil de Spring.
-- Un solo servidor: el backend sirve también el frontend en `http://localhost:8080`.
-- Comentarios y favorito reales también en la página de Connect Four.
 
-## Tecnologías
+## ✨ Features
 
-### Backend
+* 🎮 Dynamic game catalog
+* 🔄 Game synchronization with the FreeToGame API
+* 🔐 User registration and authentication with JWT
+* 👤 Protected user profile
+* ❤️ Persistent favorites
+* 💬 User comments
+* 🤖 AI-powered Game Finder using Google Gemini
+* 🎯 Personalized game recommendations
+* 🕹️ Playable Connect Four game
+* 📱 Responsive frontend
+* 🗄️ Persistent data storage
 
-- Java 21
-- Spring Boot 3.5.4
-- Spring Web
-- Spring Data JPA
-- Jakarta Validation
-- JJWT 0.12.6
-- BCrypt
-- H2
-- PostgreSQL
-- Maven
+## 🛠️ Tech Stack
 
 ### Frontend
 
-- HTML5
-- CSS3
-- JavaScript
-- Fetch API
+* HTML5
+* CSS3
+* JavaScript
+* Fetch API
+* LocalStorage
 
-### Servicios externos
+### Backend
 
-- [FreeToGame API](https://www.freetogame.com/api-doc)
-- Google Gemini API
+* Java 21
+* Spring Boot
+* Spring Data JPA
+* Maven
+* JWT Authentication
+* REST API
 
-## Estructura del proyecto
+### Database
+
+* H2 for local development
+* PostgreSQL configuration available
+
+### APIs & AI
+
+* FreeToGame API
+* Google Gemini API
+
+### Testing
+
+* JUnit 5
+* Mockito
+* Spring Boot Test
+
+## 🏗️ Architecture
 
 ```text
-GamesHub/
-├── backend/
-│   ├── src/main/java/com/gamehub/
-│   │   ├── config/          # Configuración, CORS e inicialización opcional
-│   │   ├── controller/      # Endpoints REST
-│   │   ├── dto/             # Contratos seguros de entrada y salida
-│   │   ├── entity/          # Entidades JPA
-│   │   ├── exception/       # Manejo centralizado de errores
-│   │   ├── integration/     # Clientes de FreeToGame y Gemini
-│   │   ├── repository/      # Repositorios Spring Data
-│   │   ├── security/        # JWT e identidad del usuario actual
-│   │   └── service/         # Lógica de negocio
-│   ├── src/main/resources/  # Configuración H2 y PostgreSQL
-│   └── src/test/            # Pruebas automatizadas
-├── css/                     # Estilos compartidos
-├── fonts/                   # Fuentes locales
-├── Iconos/                  # Recursos gráficos
-├── Images/                  # Imágenes y recursos del juego local
-├── js/                      # Integración frontend y Connect Four
-├── index.html               # Catálogo principal
-├── game-detail.html         # Detalle de un juego externo
-├── game.html                # Connect Four
-├── favorites.html           # Favoritos del usuario
-├── login.html               # Inicio de sesión
-└── register.html            # Registro
+Browser
+   │
+   │ HTTP / JSON
+   ▼
+Frontend
+HTML + CSS + JavaScript
+   │
+   │ REST API
+   ▼
+Spring Boot Backend
+   │
+   ├── Authentication
+   ├── Games
+   ├── Comments
+   ├── Favorites
+   └── AI Game Finder
+   │
+   ▼
+Database
+H2 / PostgreSQL
+
+External integrations:
+   ├── FreeToGame API
+   └── Google Gemini
 ```
 
-## Requisitos
+## 📁 Project Structure
+
+```text
+GameHub/
+│
+├── backend/
+│   ├── src/
+│   └── pom.xml
+│
+├── css/
+├── js/
+├── Images/
+├── Iconos/
+├── NumberBlocks/
+│
+├── index.html
+├── game.html
+├── game-detail.html
+├── favorites.html
+├── login.html
+└── register.html
+```
+
+## 🔐 Authentication
 
 - JDK 21 o superior.
 - Maven 3.9 o superior.
@@ -172,85 +202,118 @@ Los endpoints protegidos esperan el encabezado:
 Authorization: Bearer <token>
 ```
 
-### Juegos
+Authenticated users can access features such as favorites, comments and profile information.
 
-| Método | Ruta | Acceso | Descripción |
-|---|---|---|---|
-| `GET` | `/api/games` | Público | Lista el catálogo |
-| `GET` | `/api/games?category=Shooter&platform=PC` | Público | Filtra por género y plataforma |
-| `GET` | `/api/games/{id}` | Público | Devuelve el detalle de un juego |
-| `GET` | `/api/games/original` | Público | Devuelve el juego local Connect Four (se crea la primera vez); admite comentarios y favoritos como cualquier otro |
-| `POST` | `/api/games/sync` | Público en el MVP | Sincroniza manualmente FreeToGame |
+## 🎮 Game Catalog
 
-### Comentarios
+The backend can synchronize game information from the FreeToGame API.
 
-| Método | Ruta | Acceso | Descripción |
-|---|---|---|---|
-| `GET` | `/api/games/{gameId}/comments` | Público | Lista comentarios del juego |
-| `POST` | `/api/games/{gameId}/comments` | JWT | Publica un comentario como el usuario autenticado |
+This allows the application to work with real game data instead of maintaining the entire catalog manually.
 
-Ejemplo:
+## 🤖 AI Game Finder
 
-```json
-{
-  "content": "Muy buen juego para jugar con amigos."
-}
+GameHub includes an AI recommendation feature powered by Google Gemini.
+
+Users can describe the kind of game they want to play and the backend uses AI to select appropriate games from the available catalog.
+
+Example:
+
+```text
+"I want a relaxing multiplayer game that I can play with friends."
 ```
 
-La identidad se obtiene exclusivamente del JWT; la API no acepta un `userId` para crear comentarios.
+The AI returns matching games together with a recommendation reason.
 
-### Favoritos
+## ❤️ Favorites
 
-| Método | Ruta | Acceso | Descripción |
-|---|---|---|---|
-| `POST` | `/api/games/{gameId}/favorite` | JWT | Agrega un favorito de forma idempotente |
-| `DELETE` | `/api/games/{gameId}/favorite` | JWT | Elimina un favorito de forma idempotente |
-| `GET` | `/api/users/me/favorites` | JWT | Lista los juegos favoritos del usuario actual |
+Authenticated users can:
 
-### AI Game Finder
+* Add games to their favorites
+* Remove games from their favorites
+* Retrieve their saved games
+* View favorites from their profile
 
-| Método | Ruta | Acceso | Descripción |
-|---|---|---|---|
-| `POST` | `/api/ai/find` | Público | Recomienda juegos del catálogo según una consulta |
+Favorites are stored persistently in the backend.
 
-Ejemplo:
+## 💬 Comments
 
-```json
-{
-  "query": "Quiero un juego de estrategia para partidas cortas"
-}
+Users can read comments associated with games.
+
+Authenticated users can also create comments, allowing interaction around the game catalog.
+
+## 🚀 Running the Project
+
+### Requirements
+
+* Java 21+
+* Maven
+* A modern web browser
+
+### Backend
+
+Navigate to the backend directory:
+
+```bash
+cd backend
 ```
 
-Con `GEMINI_API_KEY` configurada, se envía a Gemini un subconjunto relevante del catálogo (hasta 60 juegos) y cada id devuelto se valida contra la base antes de responder. Si Gemini no está configurado o falla, se usa una búsqueda local por palabras clave (con equivalencias español → inglés, como "disparos" → Shooter); solo si tampoco hay coincidencias locales la API devuelve un error controlado (503 o 502) sin afectar el resto de GameHub.
+Run the application:
 
-## Pruebas
+```bash
+mvn spring-boot:run
+```
 
-Las pruebas automatizadas no dependen de las APIs reales de FreeToGame o Gemini; los límites externos se simulan para que la suite sea reproducible.
+The backend runs locally on:
+
+```text
+http://localhost:8080
+```
+
+### Frontend
+
+Serve the root directory using a local web server such as VS Code Live Server.
+
+Example:
+
+```text
+http://127.0.0.1:5500
+```
+
+## 🧪 Tests
+
+Run the backend test suite with:
 
 ```bash
 cd backend
 mvn clean test
 ```
 
-Para compilar y empaquetar la aplicación:
+The project includes tests for authentication, persistence, controllers and application behavior.
 
-```bash
-mvn clean package
-```
+## 🎯 What I Practiced
 
-El JAR resultante se genera dentro de `backend/target/`.
+This project gave me hands-on experience with:
 
-## Seguridad
+* Building REST APIs
+* Connecting frontend and backend applications
+* JWT authentication
+* Relational data modeling
+* API integration
+* AI API integration
+* Prompt design and structured AI responses
+* Error handling
+* HTTP requests with JavaScript
+* Backend testing with JUnit and Mockito
+* Full-stack application architecture
 
-- Las contraseñas se almacenan como hashes BCrypt y nunca se incluyen en DTOs o tokens.
-- Los JWT contienen la identidad necesaria, están firmados y tienen vencimiento.
-- La autenticación es stateless.
-- Los comentarios y favoritos siempre utilizan el usuario obtenido del JWT.
-- Los errores de autenticación y de servicios externos se devuelven sin exponer trazas internas.
-- El proyecto no implementa roles, refresh tokens ni logout del lado del servidor en esta versión.
+## 📌 Project Context
 
-## Estado y alcance
+GameHub began as a university frontend project and was later redesigned and extended into a full-stack application.
 
-Esta versión corresponde al MVP funcional de GameHub. No incluye compras, carrito, roles administrativos, Swagger/OpenAPI, Docker ni despliegue automatizado.
+The goal of the extension was to transform a static interface into a functional application with a backend, persistence, authentication, external APIs and artificial intelligence.
 
-El catálogo externo, las recomendaciones de Gemini y las imágenes remotas dependen de servicios de terceros. La aplicación puede iniciar y utilizar sus funciones locales con H2 aunque esos servicios no estén disponibles.
+## 👨‍💻 Author
+
+**Francisco Parra**
+
+Software Development student focused on full-stack development, frontend development, QA and AI automation.
