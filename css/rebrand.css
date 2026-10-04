@@ -1,0 +1,101 @@
+/* ============================================================
+   GameHub · Rebranding "Sunset Arcade"
+   Se carga ENCIMA de style.css (vía js/theme.js). No modifica style.css.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@500;600;700;800&display=swap');
+
+:root {
+    --primary: #FF6B35;
+    --primary-dark: #E5501A;
+    --primary-light: #FF9466;
+    --primary-gradient-1: linear-gradient(90deg, #FF8A3D 0%, #F72585 100%);
+    --primary-gradient-2: linear-gradient(90deg, #F72585 0%, #FF8A3D 100%);
+    --secondary: #121018;
+    --secondary-dark: #0B0A10;
+    --secondary-light: #2A2634;
+    --transparent-dark-50: rgba(18, 16, 24, .5);
+    --transparent-dark-90: rgba(11, 10, 16, .9);
+    --transparent-dark-20: rgba(42, 38, 52, .35);
+    --accent: #2DD4BF;
+    --error: #FF5470;
+    --text-color: hsla(20, 80%, 88%, 1);
+    --title: 'Sora', sans-serif;
+    --body: 'DM Sans', sans-serif;
+    --button: 'DM Sans', sans-serif;
+    --rb-radius: 1rem;
+    --rb-border: 1px solid rgba(255, 255, 255, .08);
+}
+
+body {
+    background: radial-gradient(1200px 600px at 85% -10%, rgba(247, 37, 133, .12), transparent 60%),
+                radial-gradient(900px 500px at -10% 10%, rgba(255, 107, 53, .10), transparent 60%),
+                var(--secondary);
+    background-attachment: fixed;
+    font-family: var(--body);
+    color: #f3eef7;
+}
+::-webkit-scrollbar-thumb { background-color: rgba(255, 107, 53, .45); }
+
+/* Header */
+header { background: rgba(11, 10, 16, .72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: var(--rb-border); }
+.logo-img, .logo-footer { content: url('../Iconos/tituloLogoNuevo.svg'); }
+.search-input { border-radius: 999px; background-color: rgba(255, 255, 255, .07); border: var(--rb-border); font-family: var(--body); transition: border-color .2s, background-color .2s; }
+.search-input:focus { border-color: var(--primary); background-color: rgba(255, 255, 255, .11); }
+.user-icon, .user-avatar { border-radius: 50%; outline: 2px solid var(--primary); outline-offset: 2px; }
+
+/* Sidebar y menú de usuario */
+.sidebar, .user-menu { background: rgba(18, 16, 24, .96); border: var(--rb-border); border-radius: 0 var(--rb-radius) var(--rb-radius) 0; box-shadow: 0 20px 50px rgba(0, 0, 0, .5); }
+.user-menu { border-radius: var(--rb-radius); }
+.sidebar a:hover, .user-menu li a:hover { color: var(--primary-light); }
+
+/* Slider */
+.slider-container { background: transparent; }
+.slide img { border-radius: 0 0 1.5rem 1.5rem; }
+.dot { border-color: var(--primary-light); }
+.dot.active { background-color: var(--primary); border-color: var(--primary); }
+.slider-button { background: var(--primary-gradient-1); border-radius: 999px; box-shadow: 0 10px 30px rgba(247, 37, 133, .45); font-family: var(--body); }
+.slider-button:focus { box-shadow: 0 10px 30px rgba(247, 37, 133, .45); }
+.button-slider-right::after { display: none; }
+.slider-button::after { display: block; position: absolute; inset: 0; padding: 0; top: 0; left: 0; text-align: center; line-height: 50px; font-weight: 700; color: #fff; }
+.slider-button { transition: transform .2s, box-shadow .2s; }
+.slider-button:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 36px rgba(247, 37, 133, .6); }
+
+/* Carruseles y tarjetas */
+.carousel-container h2, .genre-carousel h2 { font-family: var(--title); font-weight: 700; letter-spacing: -.02em; }
+.card-content { background: linear-gradient(180deg, #1c1926, #14121c); border-radius: var(--rb-radius); border: var(--rb-border); }
+.card img { border-radius: var(--rb-radius) var(--rb-radius) 0 0; }
+.card-title { color: #cfc6dc; }
+.genre-carousel .card:hover .card-content { border-color: var(--primary); box-shadow: 0 16px 36px rgba(255, 107, 53, .25); }
+.right-arrow, .left-arrow { background: rgba(255, 255, 255, .06); border-radius: var(--rb-radius); border: var(--rb-border); transition: background .2s; }
+.right-arrow:hover, .left-arrow:hover { background: rgba(255, 107, 53, .3); }
+
+/* Botones */
+.button-gradient-tracking { border-radius: 999px; }
+.button-free, .api-detail-link, .detail-play, .api-sync-button { background: var(--primary-gradient-1); border-radius: 999px; }
+.button-gradient-tracking::before { background: radial-gradient(circle closest-side, rgba(255, 255, 255, .45), transparent); }
+.button-cart { background: var(--accent); color: #07201c; }
+.login-button { background: var(--primary-gradient-1); border-radius: 999px; }
+.detail-favorite, .remove-favorite { background: rgba(255, 255, 255, .08); border: var(--rb-border); border-radius: 999px; }
+.btn-input-comment { border-radius: 999px; }
+.api-heart.active, .detail-favorite.active { color: #ff4d8d; }
+
+/* Detalle, descripción, comentarios */
+.game-detail-hero { background: linear-gradient(135deg, #1c1926, #14121c); border: var(--rb-border); border-radius: 1.5rem; box-shadow: 0 24px 60px rgba(0, 0, 0, .4); }
+.game-detail-image, .detail-description .detail-description-media { border-radius: var(--rb-radius); }
+.game-detail-kicker { color: var(--primary-light); text-transform: uppercase; letter-spacing: .12em; font-size: .75rem; }
+.game-detail-content h1, .favorites-main h1, .title-description-game { font-family: var(--title); font-weight: 700; letter-spacing: -.02em; }
+.container-description-game { background: linear-gradient(135deg, #1c1926, #14121c); border: var(--rb-border); border-radius: 1.5rem; }
+.container-comments, .comment-box { background: transparent; }
+.comment-box .api-state a { color: var(--primary-light); }
+
+/* Login / registro */
+.form-login { background: rgba(18, 16, 24, .72); backdrop-filter: blur(14px); border: var(--rb-border); border-radius: 1.5rem; }
+.form-login input { border-radius: 999px; background-color: rgba(255, 255, 255, .08); }
+
+/* Footer */
+footer { background: var(--secondary-dark); border-top: var(--rb-border); font-family: var(--body); }
+.footer-title { font-family: var(--title); color: var(--primary-light); }
+
+/* Botón para alternar diseño */
+.theme-toggle { position: fixed; right: 1rem; bottom: 1rem; z-index: 50; padding: .55rem 1rem; border: var(--rb-border); border-radius: 999px; background: rgba(18, 16, 24, .9); color: #fff; font: 500 .8rem var(--body, sans-serif); cursor: pointer; backdrop-filter: blur(8px); }
+.theme-toggle:hover { border-color: var(--primary); }

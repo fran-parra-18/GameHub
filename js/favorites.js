@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('article');
         card.className = 'card favorite-card';
         card.innerHTML = `<div class="card-content"><a class="api-card-detail"><img loading="lazy" alt=""><p class="card-title"></p></a><div class="api-game-meta"></div><div class="api-card-actions"><a class="api-detail-link">Ver detalle</a><button class="remove-favorite" type="button">Quitar</button></div></div>`;
-        card.querySelectorAll('a').forEach(link => { link.href = `game-detail.html?id=${encodeURIComponent(game.id)}`; });
+        card.querySelectorAll('a').forEach(link => { link.href = GameHubApi.detailUrl(game); });
         const image = card.querySelector('img'); image.src = game.thumbnailUrl || 'Images/game-screen.png'; image.alt = game.title;
         image.addEventListener('error', () => { image.src = 'Images/game-screen.png'; }, { once: true });
         card.querySelector('.card-title').textContent = game.title;

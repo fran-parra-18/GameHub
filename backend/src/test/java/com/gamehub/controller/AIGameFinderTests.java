@@ -106,10 +106,19 @@ class AIGameFinderTests {
     }
 
     @Test
-    void geminiFailureReturnsGracefulBadGateway() throws Exception {
+    void geminiFailureFallsBackToLocalKeywordSearch() throws Exception {
         when(geminiClient.recommend(anyString()))
                 .thenThrow(new ExternalServiceException("AI Game Finder is temporarily unavailable"));
-        request("strategy").andExpect(status().isBadGateway())
+        request("strategy").andExpect(status().isOk())
+                .andExpect(jsonPath("$.recommendations.length()").value(3))
+                .andExpect(jsonPath("$.recommendations[0].game.genre").value("Strategy"));
+    }
+
+    @Test
+    void geminiFailureWithoutLocalMatchesReturnsGracefulBadGateway() throws Exception {
+        when(geminiClient.recommend(anyString()))
+                .thenThrow(new ExternalServiceException("AI Game Finder is temporarily unavailable"));
+        request("zzzzqqqq").andExpect(status().isBadGateway())
                 .andExpect(jsonPath("$.message").value("AI Game Finder is temporarily unavailable"));
     }
 

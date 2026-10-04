@@ -4,8 +4,8 @@ GameHub es una aplicación web full stack para descubrir juegos gratuitos, guard
 
 ## Funcionalidades
 
-- Catálogo de juegos gratuitos sincronizado con FreeToGame.
-- Carruseles dinámicos organizados por género.
+- Catálogo de juegos gratuitos sincronizado con FreeToGame (automático al iniciar si el catálogo está vacío).
+- Carruseles dinámicos: uno por cada género real del catálogo, más "Otros géneros" para los menos frecuentes; el menú lateral y su buscador se arman con esos géneros.
 - Filtros de catálogo por categoría y plataforma.
 - Registro e inicio de sesión con JWT.
 - Contraseñas almacenadas mediante BCrypt.
@@ -15,7 +15,9 @@ GameHub es una aplicación web full stack para descubrir juegos gratuitos, guard
 - Buscador AI Game Finder integrado con Gemini.
 - Connect Four como juego local de GameHub.
 - Frontend responsive realizado con HTML, CSS y JavaScript sin frameworks.
-- H2 para desarrollo local y soporte para PostgreSQL mediante un perfil de Spring.
+- H2 en archivo para desarrollo local (los datos persisten) y soporte para PostgreSQL mediante un perfil de Spring.
+- Un solo servidor: el backend sirve también el frontend en `http://localhost:8080`.
+- Comentarios y favorito reales también en la página de Connect Four.
 
 ## Tecnologías
 
@@ -78,13 +80,12 @@ GamesHub/
 
 - JDK 21 o superior.
 - Maven 3.9 o superior.
-- Un servidor HTTP estático para servir el frontend.
 - PostgreSQL únicamente si se utiliza el perfil `postgres`.
 - Acceso a Internet para sincronizar FreeToGame o utilizar Gemini.
 
 ## Configuración
 
-El backend utiliza H2 en memoria de manera predeterminada, por lo que no requiere instalar una base de datos para desarrollo local. Los datos se pierden cuando se detiene la aplicación.
+El backend usa H2 en un archivo local (`backend/data/gamehub`), por lo que no requiere instalar una base de datos y los usuarios, favoritos, comentarios y el catálogo se conservan entre reinicios. Para empezar de cero basta con borrar la carpeta `backend/data`.
 
 Variables de entorno disponibles:
 
@@ -92,8 +93,10 @@ Variables de entorno disponibles:
 |---|---|---|
 | `JWT_SECRET` | Clave utilizada para firmar los JWT | Clave local de desarrollo |
 | `JWT_EXPIRATION_MS` | Duración del JWT en milisegundos | `86400000` (24 horas) |
-| `GEMINI_API_KEY` | Clave de acceso a Gemini | Vacía |
-| `GEMINI_MODEL` | Modelo utilizado por AI Game Finder | `gemini-3.6-flash` |
+| `GEMINI_API_KEY` | Clave de acceso a Gemini | Vacía (se usa la búsqueda local) |
+| `GEMINI_MODEL` | Modelo utilizado por AI Game Finder | `gemini-flash-latest` |
+| `CATALOG_SYNC_ON_STARTUP` | Importa FreeToGame al iniciar si el catálogo está vacío | `true` |
+| `H2_URL` | URL JDBC de H2 (por ejemplo `jdbc:h2:mem:gamehub` para una base en memoria) | `jdbc:h2:file:./data/gamehub` |
 | `CORS_ALLOWED_ORIGINS` | Orígenes autorizados para consumir la API | Puertos locales 8080 y 5500 |
 | `DATABASE_URL` | URL JDBC de PostgreSQL | `jdbc:postgresql://localhost:5432/gamehub` |
 | `DATABASE_USERNAME` | Usuario de PostgreSQL | `postgres` |
@@ -103,46 +106,25 @@ Para ambientes reales se debe definir un `JWT_SECRET` largo y privado. Las clave
 
 ## Ejecución local
 
-### 1. Iniciar el backend
-
-Desde la raíz del proyecto:
+Un solo comando levanta todo: el backend también sirve el frontend.
 
 ```bash
 cd backend
 mvn spring-boot:run
 ```
 
-La API queda disponible en `http://localhost:8080`.
+Luego abrir `http://localhost:8080`.
 
-La consola de H2 está disponible en `http://localhost:8080/h2-console` con estos datos:
-
-```text
-JDBC URL: jdbc:h2:mem:gamehub
-Usuario:  sa
-Password: (vacío)
-```
-
-### 2. Iniciar el frontend
-
-En otra terminal, desde la raíz del proyecto, se puede utilizar cualquier servidor estático. Por ejemplo:
-
-```bash
-python -m http.server 5500
-```
-
-Luego abrir `http://localhost:5500/index.html`.
-
-No se recomienda abrir los HTML directamente mediante `file://`, porque el navegador puede bloquear las solicitudes a la API por sus políticas de origen.
-
-### 3. Cargar el catálogo
-
-La sincronización automática está desactivada de forma predeterminada. Para importar o actualizar el catálogo manualmente:
+- Maven copia el frontend (HTML, CSS, JS e imágenes de la raíz del proyecto) dentro de la aplicación en cada arranque. Si modificás archivos del frontend, reiniciá el backend para verlos.
+- Al iniciar, si el catálogo está vacío, se importa automáticamente desde FreeToGame (requiere Internet). Si falló o no hay conexión, la home muestra el botón **Importar catálogo**; también se puede hacer a mano:
 
 ```bash
 curl -X POST http://localhost:8080/api/games/sync
 ```
 
-La sincronización realiza un *upsert* utilizando el identificador externo de FreeToGame, por lo que repetirla no debería crear duplicados. Si FreeToGame no está disponible, el backend continúa funcionando y conserva el catálogo existente.
+  La sincronización realiza un *upsert* por el identificador externo de FreeToGame, por lo que repetirla no crea duplicados. Si FreeToGame no está disponible, el backend sigue funcionando y conserva el catálogo existente.
+- La consola de H2 está en `http://localhost:8080/h2-console` (JDBC URL `jdbc:h2:file:./data/gamehub`, usuario `sa`, contraseña vacía; apagá el backend antes de abrir el archivo desde otra herramienta).
+- Alternativa: servir el frontend con otro servidor estático (por ejemplo `python -m http.server 5500`) y abrir `http://localhost:5500`; la API se sigue consumiendo desde `http://localhost:8080`. No se recomienda abrir los HTML con `file://`.
 
 ## PostgreSQL
 
@@ -197,6 +179,7 @@ Authorization: Bearer <token>
 | `GET` | `/api/games` | Público | Lista el catálogo |
 | `GET` | `/api/games?category=Shooter&platform=PC` | Público | Filtra por género y plataforma |
 | `GET` | `/api/games/{id}` | Público | Devuelve el detalle de un juego |
+| `GET` | `/api/games/original` | Público | Devuelve el juego local Connect Four (se crea la primera vez); admite comentarios y favoritos como cualquier otro |
 | `POST` | `/api/games/sync` | Público en el MVP | Sincroniza manualmente FreeToGame |
 
 ### Comentarios
@@ -238,7 +221,7 @@ Ejemplo:
 }
 ```
 
-AI Game Finder requiere `GEMINI_API_KEY`. Si Gemini no está configurado o no está disponible, la API devuelve un error controlado sin afectar el resto de GameHub.
+Con `GEMINI_API_KEY` configurada, se envía a Gemini un subconjunto relevante del catálogo (hasta 60 juegos) y cada id devuelto se valida contra la base antes de responder. Si Gemini no está configurado o falla, se usa una búsqueda local por palabras clave (con equivalencias español → inglés, como "disparos" → Shooter); solo si tampoco hay coincidencias locales la API devuelve un error controlado (503 o 502) sin afectar el resto de GameHub.
 
 ## Pruebas
 

@@ -2,7 +2,12 @@
     const TOKEN_KEY = 'gamehub.jwt';
     const USER_KEY = 'gamehub.user';
     const configuredBase = window.GAMEHUB_API_BASE_URL || localStorage.getItem('gamehub.apiBaseUrl');
-    const baseUrl = (configuredBase || 'http://localhost:8080').replace(/\/$/, '');
+    // Si la pagina la sirve el propio backend (http://localhost:8080) usamos rutas relativas;
+    // si se abre desde otro servidor estatico (Live Server, python -m http.server) apuntamos a localhost:8080.
+    const host = window.location.hostname;
+    const servedByBackend = /^https?:$/.test(window.location.protocol)
+        && (window.location.port === '8080' || (host !== 'localhost' && host !== '127.0.0.1'));
+    const baseUrl = (configuredBase || (servedByBackend ? '' : 'http://localhost:8080')).replace(/\/$/, '');
 
     class ApiError extends Error {
         constructor(status, message, fieldErrors) {
@@ -40,6 +45,10 @@
 
     window.GameHubApi = {
         baseUrl,
+        isOriginal: game => Boolean(game) && (game.externalId < 0 || game.gameUrl === 'game.html'),
+        detailUrl: game => (Boolean(game) && (game.externalId < 0 || game.gameUrl === 'game.html'))
+            ? 'game.html'
+            : `game-detail.html?id=${encodeURIComponent(game.id)}`,
         get: path => request('GET', path), post: (path, body) => request('POST', path, body), delete: path => request('DELETE', path),
         getToken: () => localStorage.getItem(TOKEN_KEY),
         getUser: () => { try { return JSON.parse(localStorage.getItem(USER_KEY)); } catch (_) { return null; } },

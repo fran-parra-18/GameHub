@@ -56,7 +56,7 @@ public class GeminiClient {
         } catch (ExternalServiceException e) {
             throw e;
         } catch (Exception e) {
-            log.warn("Gemini request failed: {}", e.getClass().getSimpleName());
+            log.warn("Gemini request failed: {} - {}", e.getClass().getSimpleName(), e.getMessage());
             throw new ExternalServiceException("AI Game Finder is temporarily unavailable");
         }
     }

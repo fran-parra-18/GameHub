@@ -13,8 +13,89 @@
 
 </head>
 <body>
-    <div id="site-layout"></div>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-left">
+                <img src="./Iconos/Hamburguesa.svg" alt="menu hamburguesa" class="menu-button">
+                <a href="./index.html" class="logo"> 
+                    <img src="./Iconos/tituloLogo.svg" alt="Logo" class="logo-img"> 
+                </a>
+            </div>
+
+            <form class="search-bar-nav ai-navbar-search" id="aiNavbarForm">
+                <input type="search" maxlength="500" required placeholder="¿Qué tenés ganas de jugar?" class="search-input" id="aiNavbarQuery" autocomplete="off">
+                <button type="submit" class="search-icon-button" aria-label="Buscar con AI"><img src="./Iconos/Lupa.svg" alt=""></button>
+                <div class="ai-search-dropdown" id="aiSearchDropdown" hidden aria-live="polite"></div>
+            </form>
+
+            <div class="navbar-right">
+
+                <a href="favorites.html" class="corazon icon" aria-label="Mis favoritos"></a>
+                <div class="campana icon"></div> 
+                
+                <img src="./Iconos/Avatar con imagen.svg" alt="icono avatar" class="user-icon"> 
+                
+            </div>
+        </nav>
+    </header>
+    <div class="sidebar">
         
+        <img src="./Iconos/icono-cruz.svg" alt="Cerrar" class="icon-cruz-menu">
+        
+        <div class="search-sidebar">
+            <input type="text" placeholder="Buscar..." class="search-input">
+            <img src="./Iconos/Lupa.svg" alt="Buscar" class="search-lupa">
+        </div>
+        <ul>
+            
+            <li><img src="./Iconos/iconos-sidebar/home.svg" alt="Inicio" /><a href="index.html">Inicio</a></li>
+            <li><img src="./Iconos/iconos-sidebar/recientes.svg" alt="Recientes" /><a href="#">Recientes</a></li>
+            <li><img src="./Iconos/iconos-sidebar/nuevos.svg" alt="Nuevos" /><a href="#">Nuevos</a></li>
+            <li><img src="./Iconos/iconos-sidebar/demoda.svg" alt="De moda" /><a href="#">De moda</a></li>
+            <li><img src="./Iconos/iconos-sidebar/actualizados.svg" alt="Actualizados" /><a href="#">Actualizados</a></li>
+            <hr>
+            <li><img src="./Iconos/iconos-sidebar/2jugadores.svg" alt="2 jugadores" /><a href="#">2 jugadores</a></li>
+            <li><img src="./Iconos/iconos-sidebar/accion.svg" alt="Acción" /><a href="#">Acción</a></li>
+            <li><img src="./Iconos/iconos-sidebar/aventuras.svg" alt="Aventuras" /><a href="#">Aventuras</a></li>
+            <li><img src="./Iconos/iconos-sidebar/baloncesto.svg" alt="Baloncesto" /><a href="#">Baloncesto</a></li>
+            <li><img src="./Iconos/iconos-sidebar/belleza.svg" alt="Belleza" /><a href="#">Belleza</a></li>
+            <li><img src="./Iconos/iconos-sidebar/billar.svg" alt="Billar" /><a href="#">Billar</a></li>
+            <li><img src="./Iconos/iconos-sidebar/cartas.svg" alt="Cartas" /><a href="#">Cartas</a></li>
+            <li><img src="./Iconos/iconos-sidebar/casual.svg" alt="Casual" /><a href="#">Casual</a></li>
+            <li><img src="./Iconos/iconos-sidebar/click.svg" alt="Click" /><a href="#">Click</a></li>
+            <li><img src="./Iconos/iconos-sidebar/coches.svg" alt="Coches" /><a href="#">Coches</a></li>
+            <li><img src="./Iconos/iconos-sidebar/conducir.svg" alt="Conducir" /><a href="#">Conducir</a></li>
+            <li><img src="./Iconos/iconos-sidebar/controller.svg" alt="Controller" /><a href="#">Controller</a></li>
+            <li><img src="./Iconos/iconos-sidebar/deportes.svg" alt="Deportes" /><a href="#">Deportes</a></li>
+            <li><img src="./Iconos/iconos-sidebar/terror.svg" alt="Terror" /><a href="#">Terror</a></li>
+            <li><img src="./Iconos/iconos-sidebar/vestir.svg" alt="Vestir" /><a href="#">Vestir</a></li>
+            <li><img src="./Iconos/iconos-sidebar/futbol.svg" alt="Fútbol" /><a href="#">Fútbol</a></li>
+            <li><img src="./Iconos/iconos-sidebar/multijugador.svg" alt="Multijugador" /><a href="#">Multijugador</a></li>
+            <li><img src="./Iconos/iconos-sidebar/puzzle.svg" alt="Puzzle" /><a href="#">Puzzle</a></li>
+            <li><img src="./Iconos/iconos-sidebar/io.svg" alt="Io" /><a href="#">Io</a></li>
+            <li><img src="./Iconos/iconos-sidebar/flash.svg" alt="Flash" /><a href="#">Flash</a></li>
+            <li><img src="./Iconos/iconos-sidebar/minecraft.svg" alt="Minecraft" /><a href="#">Minecraft</a></li>
+            <li><img src="./Iconos/iconos-sidebar/stickman.svg" alt="Stickman" /><a href="#">Stickman</a></li>
+            <li><img src="./Iconos/iconos-sidebar/disparos.svg" alt="Disparos" /><a href="#">Disparos</a></li>
+            <li><img src="./Iconos/iconos-sidebar/defensa.svg" alt="Defensa" /><a href="#">Defensa</a></li>
+            <li><img src="./Iconos/iconos-sidebar/mahjong.svg" alt="Mahjong" /><a href="#">Mahjong</a></li>
+            <li><img src="./Iconos/iconos-sidebar/firstperson.svg" alt="First Person" /><a href="#">First Person</a></li>
+            <li><img src="./Iconos/iconos-sidebar/motos.svg" alt="Motos" /><a href="#">Motos</a></li>
+        </ul>
+    </div>    
+    <div class="user-menu">
+        <img src="./Iconos/Avatar con imagen.svg" alt="Avatar" class="user-avatar">
+        <p id="profileGreeting">¡Hola!</p>
+        <ul>
+            <li><a href="#">Mi perfil</a></li>
+            <li><a href="#">Editar perfil</a></li>
+            <li><a href="#">Configuración de cuenta</a></li>
+            <li><a href="#">Soporte</a></li>
+            <li><a href="login.html" id="logoutLink">Cerrar sesión</a></li>
+        </ul>
+        <img src="./Iconos/icono-cruz.svg" alt="Cerrar" class="icon-cruz-profile">
+    </div>
+
     <div class="container-game">
         <div class="container-game-screen">
             <ul class="breadcrumbs">
@@ -240,10 +321,9 @@
         </div>
 
     </footer>
-    <script src="./js/layout.js?v=3"></script>
     <script src="./js/api.js?v=3"></script>
     <script src="./js/juego/Button.js"></script>
-    <script src="./js/header.js?v=3"></script><script src="./js/sidebar.js?v=3"></script>
+    <script src="./js/header.js?v=3"></script>
     <script src="./js/game.js?v=3"></script> 
     <script src="./js/buttonGradient.js?v=3"></script>
     <script src="./js/juego/BotonFicha.js"></script>

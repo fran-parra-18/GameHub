@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadPage() {
         try {
             game = await GameHubApi.get(`/api/games/${gameId}`);
+            if (GameHubApi.isOriginal(game)) { window.location.replace('game.html'); return; }
             renderGame();
             await Promise.all([loadComments(), loadFavoriteState()]);
         } catch (problem) {
@@ -35,6 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('detailDeveloper').textContent = game.developer || 'No informado';
         document.getElementById('detailPublisher').textContent = game.publisher || 'No informado';
         document.getElementById('detailDescription').textContent = game.description || 'Este juego todavía no tiene descripción.';
+        document.getElementById('detailCredits').textContent = game.developer ? `Juego desarrollado por ${game.developer}.` : '';
+        const official = document.getElementById('detailOfficial');
+        const officialLink = document.getElementById('detailOfficialLink');
+        if (game.gameUrl) { officialLink.href = game.gameUrl; officialLink.textContent = game.gameUrl; official.hidden = false; }
+        const banner = document.getElementById('detailBanner');
+        banner.src = game.thumbnailUrl || 'Images/game-screen.png';
+        banner.alt = game.title;
+        banner.addEventListener('error', () => { banner.src = 'Images/game-screen.png'; }, { once: true });
+        document.getElementById('detailDescriptionBox').hidden = false;
         const play = document.getElementById('detailPlay');
         play.href = game.gameUrl || '#';
         if (!game.gameUrl) { play.textContent = 'Enlace no disponible'; play.removeAttribute('target'); }

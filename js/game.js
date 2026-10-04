@@ -8,8 +8,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     const shareMenu = document.querySelector('.share-menu');
     const closeShare = document.querySelector('.cruz-share');
     
-    const btnCorazonVacio = document.querySelector('.icon-heart-empty');
-    const btnCorazonLleno = document.querySelector('.icon-heart-full');
     
     btnControl.addEventListener('click', () => {
         controlMenu.classList.toggle('show');
@@ -26,15 +24,5 @@ document.addEventListener('DOMContentLoaded',()=>{
     closeShare.addEventListener('click', ()=>{
         shareMenu.classList.toggle('show');
     });
-    
-    btnCorazonVacio.addEventListener('click', ()=>{
-        btnCorazonVacio.classList.toggle('show');
-        btnCorazonLleno.classList.toggle('show');
-    });
-    
-    btnCorazonLleno.addEventListener('click', ()=>{
-        btnCorazonVacio.classList.toggle('show');
-        btnCorazonLleno.classList.toggle('show');
-    })
     
     })

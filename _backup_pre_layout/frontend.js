@@ -4,6 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const favoriteIds = new Set();
     const MIN_GENRE_SIZE = 4;
     const OTHER_TITLE = 'Otros géneros';
+    const GENRE_ICONS = {
+        shooter: 'disparos', mmorpg: 'aventuras', 'action rpg': 'aventuras', arpg: 'aventuras',
+        strategy: 'defensa', 'tower defense': 'defensa', racing: 'coches', sports: 'deportes',
+        'card game': 'cartas', card: 'cartas', mmo: 'multijugador', moba: 'multijugador',
+        'battle royale': 'multijugador', fighting: 'accion', horror: 'terror', survival: 'terror',
+        puzzle: 'puzzle', fantasy: 'aventuras', social: 'casual', sandbox: 'minecraft'
+    };
     let summaryText = '';
     let syncButton = null;
 
@@ -26,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const external = games.filter(game => !GameHubApi.isOriginal(game));
             const carousels = buildGenreCarousels(external);
             sections.replaceChildren(state, originalCarousel, ...carousels);
+            renderSidebar(carousels);
 
             const genreCount = carousels.length;
             summaryText = external.length
@@ -34,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
             state.textContent = summaryText;
             if (!external.length) showEmptyCatalog();
             else removeSyncButton();
-            applyUrlSearch();
         } catch (problem) {
             sections.replaceChildren(state, createCarousel('GameHub Original', [createOriginalCard(null)]));
             state.textContent = problem.message;
@@ -113,16 +120,30 @@ document.addEventListener('DOMContentLoaded', () => {
         return carousels;
     }
 
-    // ---------------------------------------------------------------- buscador del sidebar
-
-    /** Si venís de otra página con ?q=..., aplica ese término al buscador del menú lateral. */
-    function applyUrlSearch() {
-        const term = new URLSearchParams(window.location.search).get('q');
-        const input = document.querySelector('.search-sidebar .search-input');
-        if (!term || !input) return;
-        input.value = term;
-        input.dispatchEvent(new Event('input'));
+    function renderSidebar(carousels) {
+        const list = document.querySelector('.sidebar ul');
+        if (!list) return;
+        const separator = list.querySelector('hr');
+        if (separator) {
+            while (separator.nextSibling) separator.nextSibling.remove();
+        }
+        carousels.forEach(section => {
+            const title = section.querySelector('h2').textContent;
+            const icon = GENRE_ICONS[normalizeText(title)] || 'controller';
+            const item = document.createElement('li');
+            const image = document.createElement('img');
+            image.src = `./Iconos/iconos-sidebar/${icon}.svg`;
+            image.alt = '';
+            const link = document.createElement('a');
+            link.href = `#${section.id}`;
+            link.textContent = title;
+            link.addEventListener('click', () => document.querySelector('.sidebar')?.classList.remove('show'));
+            item.append(image, link);
+            list.append(item);
+        });
     }
+
+    // ---------------------------------------------------------------- buscador del sidebar
 
     function initSidebarSearch() {
         const input = document.querySelector('.search-sidebar .search-input');

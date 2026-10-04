@@ -31,6 +31,12 @@ public class GameController {
         return gameService.getGames(category, platform).stream().map(GameDTO::from).toList();
     }
 
+    /** Juego local de GameHub (Connect Four). Se crea la primera vez que se pide. */
+    @GetMapping("/original")
+    public GameDTO original() {
+        return GameDTO.from(gameService.getOrCreateOriginal());
+    }
+
     @GetMapping("/{id}")
     public GameDTO get(@PathVariable Long id) {
         return GameDTO.from(gameService.getGame(id));

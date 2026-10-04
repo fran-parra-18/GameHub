@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -121,5 +122,17 @@ class GameControllerTests {
         game.setGenre(genre);
         game.setPlatform(platform);
         return gameRepository.save(game);
+    }
+    @Test
+    void originalGameIsCreatedOnceAndReused() throws Exception {
+        mockMvc.perform(get("/api/games/original"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title").value("Connect Four: Deadpool vs Wolverine"))
+                .andExpect(jsonPath("$.gameUrl").value("game.html"))
+                .andExpect(jsonPath("$.externalId").value(-1));
+        mockMvc.perform(get("/api/games/original")).andExpect(status().isOk());
+
+        assertThat(gameRepository.findByExternalId(-1)).isPresent();
+        assertThat(gameRepository.count()).isEqualTo(4);
     }
 }

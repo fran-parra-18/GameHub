@@ -86,6 +86,39 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <!-- Copia el frontend (HTML/CSS/JS/imagenes de la raiz del proyecto) dentro del jar
+                 para que Spring Boot lo sirva desde http://localhost:8080 (un solo servidor). -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-frontend</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.outputDirectory}/static</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/..</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>*.html</include>
+                                        <include>css/**</include>
+                                        <include>js/**</include>
+                                        <include>fonts/**</include>
+                                        <include>Iconos/**</include>
+                                        <include>Images/**</include>
+                                        <include>NumberBlocks/**</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>

@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const game = recommendation.game;
         const link = document.createElement('a');
         link.className = 'ai-dropdown-result';
-        link.href = `game-detail.html?id=${encodeURIComponent(game.id)}`;
+        link.href = GameHubApi.detailUrl(game);
         const image = document.createElement('img');
         image.src = game.thumbnailUrl || 'Images/game-screen.png';
         image.alt = '';
